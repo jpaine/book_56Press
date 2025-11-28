@@ -2,6 +2,25 @@
 
 A GitHub repository template for automated ebook generation. When cloned for a new book project, an interactive setup script configures the book, then automatically generates professional EPUB, PDF, and Word documents from a standardized Markdown book structure.
 
+## 🎯 What This Engine Does
+
+**This engine generates professional EPUB, PDF, and Word documents from your markdown files.**
+
+It does NOT:
+- ❌ Collect data from sources
+- ❌ Analyze or process data
+- ❌ Write your content
+- ❌ Create your outline
+
+It DOES:
+- ✅ Take your written markdown files
+- ✅ Apply professional formatting and styling
+- ✅ Generate publication-ready EPUB, PDF, and Word files
+- ✅ Validate everything works correctly
+- ✅ Handle all the technical conversion details
+
+**You write the content → This engine formats and publishes it**
+
 ## 🚀 Quick Start (5 minutes)
 
 ### Step 1: Clone This Repository
@@ -392,30 +411,179 @@ python3 tools/validate_epub.py output/your_book.epub
 
 ## 📚 Complete Book Creation Workflow
 
-This engine is designed as **Stage 4** in a data-driven book creation pipeline:
+This engine is designed as **Stage 4** in a data-driven non-fiction book creation pipeline. Here's the complete process:
 
-### Stage 1: Data Collection (Outside Engine Scope)
-- Collect data from multiple sources
-- Process and organize data
-- Extract insights and patterns
+### Stage 1: Data Collection & Extraction
 
-### Stage 2: Outline Creation (Outside Engine Scope)
-- Create book outline based on data
-- Structure chapters and sections
-- Plan front matter and back matter
+**What to do:**
+1. **Identify data sources** relevant to your topic:
+   - Reddit discussions (r/subreddit, search for keywords)
+   - YouTube videos (transcribe relevant videos)
+   - Hacker News threads (search and collect discussions)
+   - Official sources (company blogs, documentation)
+   - Community forums (Discord, Slack, forums)
+   - Interview transcripts (if you conduct interviews)
+   - Public datasets (CSV, JSON files)
 
-### Stage 3: Writing in Style (Outside Engine Scope)
-- Write content following established style
-- Create markdown files for each chapter
-- Write front matter and back matter
+2. **Extract and organize data**:
+   - Save Reddit posts/comments as JSON or markdown
+   - Transcribe YouTube videos (use tools like Whisper, or manual transcription)
+   - Export Hacker News discussions
+   - Download official documentation
+   - Organize everything into folders by source type
+
+3. **Process the data**:
+   - Clean and normalize text
+   - Extract key quotes and insights
+   - Identify patterns and themes
+   - Create structured datasets (JSON, CSV, or markdown)
+
+**Example folder structure for data collection:**
+```
+data_sources/
+├── reddit/
+│   ├── post_1.json
+│   ├── post_2.json
+│   └── ...
+├── youtube/
+│   ├── video_1_transcript.txt
+│   ├── video_2_transcript.txt
+│   └── ...
+├── hackernews/
+│   ├── thread_1.json
+│   └── ...
+├── official/
+│   ├── blog_post_1.md
+│   └── ...
+└── processed/
+    ├── insights.json
+    ├── quotes.json
+    └── patterns.json
+```
+
+**Tools you might use:**
+- Web scraping: Python (BeautifulSoup, Scrapy), or browser extensions
+- Video transcription: Whisper AI, YouTube auto-captions, or manual
+- Data processing: Python scripts, Jupyter notebooks
+- Organization: Spreadsheets, databases, or markdown files
+
+### Stage 2: Outline Creation
+
+**What to do:**
+1. **Analyze your collected data**:
+   - Review all extracted insights
+   - Identify main themes and topics
+   - Find patterns across different sources
+   - Note common questions or problems
+
+2. **Create book outline**:
+   - Structure chapters based on themes
+   - Plan front matter (title, preface explaining methodology)
+   - Plan back matter (appendices with data sources, references)
+   - Decide on chapter order and flow
+
+3. **Map data to chapters**:
+   - Assign specific data sources to each chapter
+   - Identify key quotes and examples for each section
+   - Plan where to cite sources
+
+**Example outline structure:**
+```
+1. Introduction (What the book covers)
+2. Chapter 1: [Main Theme 1] (Data from sources X, Y, Z)
+3. Chapter 2: [Main Theme 2] (Data from sources A, B, C)
+4. Chapter 3: [Main Theme 3] (Data from sources D, E, F)
+...
+Conclusion: [Synthesis of findings]
+Appendix A: Data Sources (List of all sources used)
+Appendix B: Methodology (How data was collected)
+References: [All citations]
+```
+
+### Stage 3: Writing in Style
+
+**What to do:**
+1. **Write each chapter** using your collected data:
+   - Start with markdown files: `chapter_1.md`, `chapter_2.md`, etc.
+   - Incorporate insights from your data analysis
+   - Include quotes and examples from sources
+   - Cite sources as you write (you'll format references later)
+   - Follow your established writing style (data-driven, reflective, systematic)
+
+2. **Write front matter**:
+   - `title_page.md` - Book title, subtitle, publisher
+   - `copyright_page.md` - Copyright, disclaimers, ISBN placeholder
+   - `dedication.md` - Personal dedication (optional)
+   - `preface.md` - Explain your methodology, data sources, why you wrote this
+   - `table_of_contents.md` - Chapter list (can be auto-generated later)
+
+3. **Write back matter**:
+   - `acknowledgments.md` - Thank you section
+   - `appendix_*.md` - Detailed data sources, methodology, additional analysis
+   - `references.md` - All citations and sources
+
+**Writing tips:**
+- Use markdown formatting: `#` for headings, `**bold**` for emphasis
+- Keep chapters in separate files
+- Name files consistently: `chapter_1.md`, `chapter_2.md`, etc.
+- Include data-driven insights, not just opinions
+- Reference your sources as you write
 
 ### Stage 4: Ebook Generation (This Engine)
-1. Clone this repository
-2. Run `./scripts/setup_project.sh`
-3. Add your content to `book_content/`
-4. Run `./scripts/generate_all.sh`
-5. Review output in `output/`
-6. Publish to KDP, Apple Books, etc.
+
+**This is where this repository comes in!**
+
+Once you have all your markdown files written, use this engine to generate professional formats:
+
+1. **Clone this repository**:
+   ```bash
+   git clone https://github.com/jpaine/book_56Press.git my-book-name
+   cd my-book-name
+   ```
+
+2. **Install dependencies** (one-time setup):
+   ```bash
+   pip install -r requirements.txt
+   brew install pandoc  # macOS, or use package manager for your OS
+   pip install weasyprint
+   ```
+
+3. **Run setup**:
+   ```bash
+   ./scripts/setup_project.sh
+   ```
+   This creates the folder structure and `config.yaml`
+
+4. **Copy your content**:
+   - Copy your markdown files to `book_content/chapters/`
+   - Copy front matter to `book_content/front_matter/`
+   - Copy back matter to `book_content/back_matter/`
+
+5. **Generate formats**:
+   ```bash
+   ./scripts/generate_all.sh
+   ```
+
+6. **Review and publish**:
+   - Check `output/` folder for EPUB, PDF, Word files
+   - Test EPUB in Kindle Previewer
+   - Review PDF formatting
+   - Upload to Amazon KDP, Apple Books, etc.
+
+## 🔄 Typical Workflow Summary
+
+**Before using this engine:**
+1. ✅ Collect data from multiple sources (Reddit, YouTube, Hacker News, etc.)
+2. ✅ Extract and organize insights, quotes, patterns
+3. ✅ Create book outline based on data analysis
+4. ✅ Write all content in markdown files
+
+**Using this engine:**
+5. ✅ Clone this repository
+6. ✅ Run setup script
+7. ✅ Copy your markdown files into `book_content/`
+8. ✅ Generate EPUB, PDF, Word formats
+9. ✅ Publish to platforms
 
 ## 🎯 Features
 
