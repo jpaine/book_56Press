@@ -2,6 +2,63 @@
 
 A GitHub repository template for automated ebook generation. When cloned for a new book project, an interactive setup script configures the book, then automatically generates professional EPUB, PDF, and Word documents from a standardized Markdown book structure.
 
+## 📋 Quick Overview: The Complete Process
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  STAGE 1: DATA COLLECTION & EXTRACTION                      │
+│  (Do this BEFORE using this engine)                          │
+├─────────────────────────────────────────────────────────────┤
+│  1. Collect data from:                                       │
+│     • Reddit (posts, comments)                                │
+│     • YouTube (transcribe videos)                            │
+│     • Hacker News (discussions)                              │
+│     • Official sources (blogs, docs)                         │
+│     • Community forums                                       │
+│                                                              │
+│  2. Extract insights:                                        │
+│     • Save as JSON/markdown files                            │
+│     • Organize by source type                                │
+│     • Process and clean data                                 │
+│     • Identify patterns and themes                            │
+└─────────────────────────────────────────────────────────────┘
+                            ↓
+┌─────────────────────────────────────────────────────────────┐
+│  STAGE 2: OUTLINE CREATION                                   │
+│  (Do this BEFORE using this engine)                         │
+├─────────────────────────────────────────────────────────────┤
+│  1. Analyze collected data                                   │
+│  2. Create chapter structure                                 │
+│  3. Map data sources to chapters                             │
+│  4. Plan front/back matter                                   │
+└─────────────────────────────────────────────────────────────┘
+                            ↓
+┌─────────────────────────────────────────────────────────────┐
+│  STAGE 3: WRITING                                            │
+│  (Do this BEFORE using this engine)                         │
+├─────────────────────────────────────────────────────────────┤
+│  1. Write chapters in markdown:                              │
+│     • chapter_1.md, chapter_2.md, etc.                      │
+│  2. Write front matter:                                      │
+│     • title_page.md, copyright_page.md, preface.md          │
+│  3. Write back matter:                                      │
+│     • acknowledgments.md, appendices, references.md          │
+└─────────────────────────────────────────────────────────────┘
+                            ↓
+┌─────────────────────────────────────────────────────────────┐
+│  STAGE 4: EBOOK GENERATION (THIS ENGINE) ✨                  │
+│  (This is what this repository does)                        │
+├─────────────────────────────────────────────────────────────┤
+│  1. Clone this repo                                          │
+│  2. Run setup script                                         │
+│  3. Copy your markdown files to book_content/               │
+│  4. Run generate_all.sh                                      │
+│  5. Get EPUB, PDF, Word files → Publish!                   │
+└─────────────────────────────────────────────────────────────┘
+```
+
+**Important:** This engine handles Stage 4 only. You need to complete Stages 1-3 (data collection, outline, writing) before using this engine.
+
 ## 🎯 What This Engine Does
 
 **This engine generates professional EPUB, PDF, and Word documents from your markdown files.**
