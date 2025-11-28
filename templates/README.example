@@ -1,0 +1,52 @@
+# Your Book Title
+
+A comprehensive guide to [your topic].
+
+## Quick Start
+
+1. **Setup**: Run `./scripts/setup_project.sh` (if not already done)
+2. **Edit**: Add your content to `book_content/`
+3. **Generate**: Run `./scripts/generate_all.sh`
+4. **Review**: Check output in `output/` folder
+
+## Project Structure
+
+- `book_content/` - Your book content (markdown files)
+- `config.yaml` - Book configuration
+- `output/` - Generated files (EPUB, PDF, Word)
+
+## Configuration
+
+Edit `config.yaml` to customize:
+- Book metadata (title, author, publisher)
+- Chapter count
+- Output filenames
+- Style paths
+
+## Generation
+
+Generate all formats:
+```bash
+./scripts/generate_all.sh
+```
+
+Generate individual formats:
+```bash
+./scripts/generate_epub.sh
+./scripts/generate_pdf.sh
+./scripts/generate_word.sh
+```
+
+## Validation
+
+Run validation checks:
+```bash
+./scripts/validate.sh
+```
+
+## Publishing
+
+Your generated files are ready for:
+- **EPUB**: Amazon KDP, Apple Books, Kobo
+- **PDF**: Amazon KDP Print, IngramSpark
+- **Word**: Further editing in Microsoft Word

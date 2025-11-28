@@ -1,0 +1,31 @@
+# Book Metadata Configuration
+# Copy this file to config.yaml and fill in your book details
+
+book:
+  title: "Your Book Title"
+  subtitle: "Your Book Subtitle"
+  author: ""  # Optional
+  publisher: "Your Publisher Name"
+  date: "2025"
+  language: "en-US"
+  description: "A comprehensive guide..."
+  rights: "Copyright © 2025 by Your Publisher. All rights reserved."
+
+structure:
+  chapters: 8  # Number of chapters (will be auto-detected if not specified)
+  has_conclusion: true  # Whether you have a conclusion chapter
+  appendices:  # List of appendix files (optional)
+    - appendix_a.md
+    - appendix_b.md
+  cover_image: "book_content/cover_epub.png"  # Optional cover image path
+
+output:
+  epub_filename: ""  # Auto-generated from title if empty
+  pdf_filename: ""   # Auto-generated from title if empty
+  word_filename: ""  # Auto-generated from title if empty
+  output_dir: "output"
+
+styles:
+  epub_css: "styles/ebook_styles.css"
+  print_css: "styles/print_styles.css"
+  word_template: "styles/word_template.docx"

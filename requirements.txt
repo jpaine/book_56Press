@@ -1,0 +1,11 @@
+# Python dependencies for ebook generation engine
+
+# Required
+python-docx>=0.8.11  # For Word document formatting
+PyYAML>=6.0          # For config file parsing
+
+# Optional (for EPUB validation)
+# epubcheck - install separately via package manager
+
+# Optional (for PDF generation)
+# weasyprint - install separately via: pip install weasyprint

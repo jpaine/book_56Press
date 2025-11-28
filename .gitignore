@@ -1,0 +1,42 @@
+# Output files
+output/
+*.epub
+*.pdf
+*.docx
+*.html
+
+# Temporary files
+temp_*.md
+temp_*.html
+*.tmp
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+
+# System files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE
+.vscode/
+.idea/
+*.sublime-*
+
+# Logs
+*.log
+
+# Config (user-specific, keep example)
+config.yaml
+
+# EPUB extraction (temporary)
+epub_extracted/

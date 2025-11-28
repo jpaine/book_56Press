@@ -1,0 +1,436 @@
+/* Professional Book Print Styles for PDF Generation */
+
+/* Page Setup - Standard Book Size (6x9 inches) - KDP Print Requirements */
+@page {
+    size: 6in 9in;
+    /* KDP margins: Inside (gutter) 0.375", Outside 0.25", Top/Bottom 0.25" */
+    margin: 0.25in 0.25in 0.25in 0.375in;
+    
+    @bottom-center {
+        content: counter(page);
+        font-family: "Minion Pro", "Adobe Garamond Pro", "Garamond", "Georgia", serif;
+        font-size: 9pt;
+        color: #888;
+    }
+}
+
+/* First page of chapters - no page number */
+@page chapter-start {
+    @bottom-center {
+        content: "";
+    }
+}
+
+/* Right (odd) pages - chapter title in header */
+@page :right {
+    @top-right {
+        content: string(chaptertitle);
+        font-family: "Minion Pro", "Adobe Garamond Pro", "Garamond", "Georgia", serif;
+        font-size: 8pt;
+        color: #888;
+        font-style: normal;
+        font-weight: normal;
+        padding-top: 0.15in;
+    }
+}
+
+/* Left (even) pages - book title in header */
+@page :left {
+    @top-left {
+        content: "How to Get into YCombinator";
+        font-family: "Minion Pro", "Adobe Garamond Pro", "Garamond", "Georgia", serif;
+        font-size: 8pt;
+        color: #888;
+        font-style: normal;
+        font-weight: normal;
+        padding-top: 0.15in;
+    }
+}
+
+/* Front matter pages (use roman numerals) */
+@page frontmatter {
+    @bottom-center {
+        content: counter(page, lower-roman);
+    }
+}
+
+/* Body text - Professional book fonts with visible improvements */
+body {
+    font-family: "Minion Pro", "Adobe Garamond Pro", "Garamond", "EB Garamond", "Caslon", "Georgia", "Times New Roman", serif;
+    font-size: 10pt;
+    line-height: 1.45;
+    color: #000;
+    text-align: justify;
+    hyphens: auto;
+    margin: 0;
+    padding: 0;
+    font-feature-settings: "liga" 1, "kern" 1;
+    text-rendering: optimizeLegibility;
+    letter-spacing: 0.01em;
+}
+
+/* Headings - Professional sans-serif with refined spacing */
+h1 {
+    font-family: "Trade Gothic", "Franklin Gothic", "Helvetica Neue", "Arial", sans-serif;
+    font-size: 20pt;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    margin-top: 0.3em;
+    page-break-after: avoid;
+    string-set: chaptertitle content();
+    break-before: page;
+    line-height: 1.2;
+    letter-spacing: -0.03em;
+    font-feature-settings: "kern" 1;
+    text-transform: none;
+}
+
+h2 {
+    font-family: "Trade Gothic", "Franklin Gothic", "Helvetica Neue", "Arial", sans-serif;
+    font-size: 15pt;
+    font-weight: 700;
+    margin-top: 0.9em;
+    margin-bottom: 0.4em;
+    page-break-after: avoid;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    font-feature-settings: "kern" 1;
+}
+
+h3 {
+    font-family: "Trade Gothic", "Franklin Gothic", "Helvetica Neue", "Arial", sans-serif;
+    font-size: 13pt;
+    font-weight: 700;
+    margin-top: 0.8em;
+    margin-bottom: 0.35em;
+    page-break-after: avoid;
+    line-height: 1.25;
+    letter-spacing: -0.015em;
+    font-feature-settings: "kern" 1;
+}
+
+h4 {
+    font-family: "Minion Pro", "Adobe Garamond Pro", "Garamond", "EB Garamond", "Caslon", "Georgia", serif;
+    font-size: 10.5pt;
+    font-weight: bold;
+    font-style: italic;
+    margin-top: 0.7em;
+    margin-bottom: 0.35em;
+    page-break-after: avoid;
+    line-height: 1.3;
+    font-feature-settings: "liga" 1, "kern" 1;
+}
+
+/* Paragraphs - Professional spacing - TIGHTER */
+p {
+    margin: 0;
+    margin-bottom: 0.25em;
+    text-indent: 1.5em;
+    orphans: 3;
+    widows: 3;
+    line-height: 1.45;
+    font-feature-settings: "liga" 1, "kern" 1;
+}
+
+/* First paragraph after heading - no indent */
+h1 + p,
+h2 + p,
+h3 + p,
+h4 + p {
+    text-indent: 0;
+}
+
+/* Blockquotes - Elegant styling - MORE VISIBLE */
+blockquote {
+    margin: 0.6em 1.5em;
+    font-style: italic;
+    border-left: 3px solid #999;
+    padding-left: 1em;
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
+    line-height: 1.5;
+    font-feature-settings: "liga" 1, "kern" 1;
+    color: #222;
+    background-color: #fafafa;
+    font-size: 9.5pt;
+}
+
+/* Lists - Professional spacing - TIGHTER */
+ul, ol {
+    margin: 0.3em 0 0.3em 1.5em;
+    orphans: 2;
+    widows: 2;
+    line-height: 1.45;
+    font-feature-settings: "liga" 1, "kern" 1;
+}
+
+li {
+    margin-bottom: 0.15em;
+    line-height: 1.45;
+    padding-left: 0.2em;
+}
+
+/* Code blocks - Professional styling */
+pre, code {
+    font-family: "Courier New", "Monaco", "Consolas", monospace;
+    font-size: 9pt;
+    background-color: #f8f8f8;
+    padding: 0.2em 0.4em;
+}
+
+pre {
+    padding: 0.6em;
+    margin: 0.6em 0;
+    overflow-x: auto;
+    border: 1px solid #ddd;
+    page-break-inside: avoid;
+    border-radius: 2px;
+}
+
+/* Tables - Professional styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0.7em 0;
+    font-size: 9.5pt;
+    page-break-inside: avoid;
+    font-feature-settings: "liga" 1, "kern" 1;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 0.35em 0.5em;
+    text-align: left;
+    line-height: 1.4;
+}
+
+th {
+    background-color: #f8f8f8;
+    font-weight: bold;
+    font-family: "Trade Gothic", "Franklin Gothic", "Helvetica Neue", "Arial", sans-serif;
+}
+
+/* Links - show URL for print */
+a {
+    color: #000;
+    text-decoration: none;
+    border-bottom: 1px solid #999;
+}
+
+/* Page breaks */
+.page-break {
+    page-break-after: always;
+}
+
+.avoid-break {
+    page-break-inside: avoid;
+}
+
+/* Chapter starts */
+h1 {
+    page: chapter-start;
+}
+
+/* Front matter styling */
+.frontmatter {
+    page: frontmatter;
+}
+
+/* Title page - Elegant professional layout - MORE DRAMATIC */
+.title-page {
+    text-align: center;
+    margin-top: 3in;
+    page-break-after: always;
+    font-feature-settings: "liga" 1, "kern" 1;
+}
+
+.title-page h1 {
+    font-size: 32pt;
+    margin-bottom: 0.4em;
+    break-before: auto;
+    line-height: 1.15;
+    font-family: "Trade Gothic", "Franklin Gothic", "Helvetica Neue", "Arial", sans-serif;
+    letter-spacing: -0.03em;
+    font-weight: 700;
+}
+
+.title-page .subtitle {
+    font-size: 18pt;
+    font-style: italic;
+    margin-bottom: 2em;
+    font-family: "Minion Pro", "Adobe Garamond Pro", "Garamond", "EB Garamond", "Caslon", "Georgia", serif;
+    color: #333;
+    letter-spacing: 0.02em;
+}
+
+.title-page .publisher {
+    margin-top: 4em;
+    font-size: 12pt;
+    font-family: "Minion Pro", "Adobe Garamond Pro", "Garamond", "EB Garamond", "Caslon", "Georgia", serif;
+    color: #555;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-size: 10pt;
+}
+
+/* Copyright page - Tighter professional layout */
+.copyright-page {
+    font-size: 9pt;
+    line-height: 1.4;
+    page-break-after: always;
+    font-feature-settings: "liga" 1, "kern" 1;
+}
+
+.copyright-page p {
+    text-indent: 0;
+    margin-bottom: 0.3em;
+}
+
+/* Table of Contents - Professional formatting */
+.toc {
+    page-break-after: always;
+    font-feature-settings: "liga" 1, "kern" 1;
+}
+
+.toc h1 {
+    break-before: auto;
+    margin-bottom: 0.8em;
+    font-family: "Trade Gothic", "Franklin Gothic", "Helvetica Neue", "Arial", sans-serif;
+    letter-spacing: -0.02em;
+}
+
+.toc h2 {
+    margin-top: 0.9em;
+    margin-bottom: 0.4em;
+    font-size: 12.5pt;
+    font-family: "Trade Gothic", "Franklin Gothic", "Helvetica Neue", "Arial", sans-serif;
+    letter-spacing: -0.01em;
+}
+
+.toc ul {
+    list-style: none;
+    margin-left: 0;
+    margin-bottom: 0.7em;
+}
+
+.toc li {
+    margin-bottom: 0.25em;
+    line-height: 1.4;
+}
+
+.toc p {
+    text-indent: 0;
+    margin-bottom: 0.15em;
+    font-feature-settings: "liga" 1, "kern" 1;
+}
+
+/* Dedication - Elegant centered layout */
+.dedication {
+    text-align: center;
+    margin-top: 2.8in;
+    font-style: italic;
+    page-break-after: always;
+    line-height: 1.6;
+    font-feature-settings: "liga" 1, "kern" 1;
+}
+
+.dedication p {
+    text-indent: 0;
+    margin-bottom: 0.4em;
+}
+
+/* Preface */
+.preface {
+    page-break-after: always;
+}
+
+/* Chapters - always start on new page */
+.chapter {
+    page-break-before: always;
+}
+
+/* Chapter opening - Elegant design with drop cap - MORE VISIBLE */
+.chapter h1 {
+    margin-top: 2.8in;
+    margin-bottom: 0.3em;
+    font-size: 22pt;
+    letter-spacing: -0.04em;
+}
+
+/* Drop cap for first paragraph after chapter title - LARGER, MORE VISIBLE */
+.chapter h1 + p::first-letter {
+    float: left;
+    font-size: 5em;
+    line-height: 0.7;
+    padding-right: 0.1em;
+    padding-top: 0.02em;
+    padding-bottom: 0.05em;
+    font-weight: normal;
+    font-family: "Minion Pro", "Adobe Garamond Pro", "Garamond", "EB Garamond", "Caslon", "Georgia", "Times New Roman", serif;
+    font-feature-settings: "liga" 1, "kern" 1;
+    color: #000;
+    margin-right: 0.05em;
+}
+
+.chapter h1 + p {
+    text-indent: 0;
+    margin-top: 0.2em;
+    margin-bottom: 0.5em;
+    line-height: 1.5;
+    font-size: 10.5pt;
+}
+
+/* Back matter */
+.appendix, .references, .acknowledgments {
+    page-break-before: always;
+}
+
+/* Footnotes */
+.footnote {
+    font-size: 9pt;
+    line-height: 1.3;
+    border-top: 1px solid #ccc;
+    padding-top: 0.5em;
+    margin-top: 1em;
+}
+
+/* Emphasis */
+em, i {
+    font-style: italic;
+}
+
+strong, b {
+    font-weight: bold;
+}
+
+/* Horizontal rules */
+hr {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 2em 0;
+}
+
+/* Ensure images fit on page */
+img {
+    max-width: 100%;
+    height: auto;
+    page-break-inside: avoid;
+}
+
+/* Citations */
+.citation {
+    font-size: 9pt;
+    color: #666;
+}
+
+/* Prevent orphans and widows */
+h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+}
+
+/* Keep list items together when possible */
+li {
+    page-break-inside: avoid;
+}
+
