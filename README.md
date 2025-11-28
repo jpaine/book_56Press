@@ -12,12 +12,14 @@ A GitHub repository template for automated ebook generation. When cloned for a n
 │  1. Collect data from:                                       │
 │     • Reddit (posts, comments)                                │
 │     • YouTube (transcribe videos)                            │
+│     • Podcasts (download & transcribe audio)                │
 │     • Hacker News (discussions)                              │
 │     • Official sources (blogs, docs)                         │
 │     • Community forums                                       │
 │                                                              │
 │  2. Extract insights:                                        │
 │     • Save as JSON/markdown files                            │
+│     • Transcribe videos/podcasts (Whisper AI, etc.)         │
 │     • Organize by source type                                │
 │     • Process and clean data                                 │
 │     • Identify patterns and themes                            │
@@ -474,19 +476,22 @@ This engine is designed as **Stage 4** in a data-driven non-fiction book creatio
 
 **What to do:**
 1. **Identify data sources** relevant to your topic:
-   - Reddit discussions (r/subreddit, search for keywords)
-   - YouTube videos (transcribe relevant videos)
-   - Hacker News threads (search and collect discussions)
-   - Official sources (company blogs, documentation)
-   - Community forums (Discord, Slack, forums)
-   - Interview transcripts (if you conduct interviews)
-   - Public datasets (CSV, JSON files)
+   - **Reddit discussions** (r/subreddit, search for keywords)
+   - **YouTube videos** (transcribe relevant videos)
+   - **Podcasts** (transcribe audio episodes)
+   - **Hacker News threads** (search and collect discussions)
+   - **Official sources** (company blogs, documentation)
+   - **Community forums** (Discord, Slack, forums)
+   - **Interview transcripts** (if you conduct interviews)
+   - **Public datasets** (CSV, JSON files)
 
 2. **Extract and organize data**:
-   - Save Reddit posts/comments as JSON or markdown
-   - Transcribe YouTube videos (use tools like Whisper, or manual transcription)
-   - Export Hacker News discussions
-   - Download official documentation
+   - **Reddit**: Save posts/comments as JSON or markdown
+   - **YouTube**: Transcribe videos (see transcription methods below)
+   - **Podcasts**: Download audio and transcribe (see podcast transcription below)
+   - **Hacker News**: Export discussions as JSON
+   - **Official sources**: Download documentation, blog posts
+   - **Forums**: Export relevant threads
    - Organize everything into folders by source type
 
 3. **Process the data**:
@@ -506,6 +511,12 @@ data_sources/
 │   ├── video_1_transcript.txt
 │   ├── video_2_transcript.txt
 │   └── ...
+├── podcasts/
+│   ├── episode_1_audio.mp3
+│   ├── episode_1_transcript.txt
+│   ├── episode_2_audio.mp3
+│   ├── episode_2_transcript.txt
+│   └── ...
 ├── hackernews/
 │   ├── thread_1.json
 │   └── ...
@@ -519,10 +530,83 @@ data_sources/
 ```
 
 **Tools you might use:**
-- Web scraping: Python (BeautifulSoup, Scrapy), or browser extensions
-- Video transcription: Whisper AI, YouTube auto-captions, or manual
-- Data processing: Python scripts, Jupyter notebooks
-- Organization: Spreadsheets, databases, or markdown files
+- **Web scraping**: Python (BeautifulSoup, Scrapy), or browser extensions
+- **Video transcription**: Whisper AI, YouTube auto-captions, or manual
+- **Podcast transcription**: See detailed process below
+- **Data processing**: Python scripts, Jupyter notebooks
+- **Organization**: Spreadsheets, databases, or markdown files
+
+#### 📻 Podcast Transcription Process
+
+**Step 1: Download Podcast Audio**
+- **From podcast websites**: Use browser extensions or tools like `yt-dlp`:
+  ```bash
+  # Install yt-dlp (works for many podcast platforms)
+  pip install yt-dlp
+  
+  # Download podcast episode
+  yt-dlp "https://podcast-url/episode" -x --audio-format mp3
+  ```
+- **From RSS feeds**: Many podcasts provide direct download links in RSS
+- **From podcast apps**: Export audio files if available
+- **Manual download**: Right-click and save audio files from podcast websites
+
+**Step 2: Transcribe Podcast Audio**
+
+**Option A: Using OpenAI Whisper (Recommended - Free, High Quality)**
+```bash
+# Install Whisper
+pip install openai-whisper
+
+# Transcribe audio file
+whisper podcast_episode.mp3 --model medium --language en --output_format txt
+
+# This creates: podcast_episode.txt with full transcript
+```
+
+**Option B: Using Online Services**
+- **Otter.ai**: Free tier available, good accuracy
+- **Rev.com**: Paid service, very accurate
+- **Descript**: Free tier, includes editing tools
+- **AssemblyAI**: API-based, pay per minute
+
+**Option C: Using YouTube Auto-Captions (if podcast is on YouTube)**
+- Many podcasts also publish on YouTube
+- Download transcript using browser extensions or `yt-dlp`:
+  ```bash
+  yt-dlp --write-auto-sub --sub-lang en "https://youtube.com/watch?v=VIDEO_ID"
+  ```
+
+**Step 3: Clean and Organize Transcripts**
+- Remove timestamps if present
+- Fix speaker names/identifiers
+- Break into logical sections
+- Save as `.txt` or `.md` files
+- Name consistently: `podcast_name_episode_1_transcript.txt`
+
+**Step 4: Extract Key Insights**
+- Read through transcripts
+- Highlight important quotes
+- Note key themes and patterns
+- Create summary files linking transcripts to book chapters
+
+**Example workflow:**
+```bash
+# 1. Download podcast
+yt-dlp "https://example.com/podcast/episode-1" -x --audio-format mp3 -o "podcasts/episode_1.mp3"
+
+# 2. Transcribe with Whisper
+whisper podcasts/episode_1.mp3 --model medium --output_format txt --output_dir podcasts/
+
+# 3. Result: podcasts/episode_1.txt (ready to analyze)
+```
+
+**Tips for podcast transcription:**
+- Use `whisper --model medium` for good balance of speed/accuracy
+- Use `whisper --model large` for best accuracy (slower)
+- For multiple speakers, Whisper automatically identifies them
+- Clean up transcripts manually for important quotes
+- Save both raw transcripts and cleaned versions
 
 ### Stage 2: Outline Creation
 
