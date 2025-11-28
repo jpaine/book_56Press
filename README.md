@@ -4,30 +4,60 @@ A GitHub repository template for automated ebook generation. When cloned for a n
 
 ## 🚀 Quick Start (5 minutes)
 
-1. **Clone this repository**:
-   ```bash
-   git clone <repo-url> my-book-project
-   cd my-book-project
-   ```
+### Step 1: Clone This Repository
+```bash
+git clone https://github.com/jpaine/book_56Press.git my-book-project
+cd my-book-project
+```
 
-2. **Run setup**:
-   ```bash
-   ./scripts/setup_project.sh
-   ```
-   This will ask you questions about your book and create the folder structure.
+### Step 2: Install Dependencies
+```bash
+# Install Python dependencies
+pip install -r requirements.txt
 
-3. **Add your content**:
-   - Edit files in `book_content/front_matter/`
-   - Add chapters to `book_content/chapters/`
-   - Add back matter to `book_content/back_matter/`
+# Install system tools (if not already installed)
+# macOS:
+brew install pandoc
+pip install weasyprint
 
-4. **Generate**:
-   ```bash
-   ./scripts/generate_all.sh
-   ```
+# Linux:
+sudo apt install pandoc
+pip install weasyprint
+```
 
-5. **Review output**:
-   Check the `output/` folder for your EPUB, PDF, and Word files.
+### Step 3: Run Setup
+```bash
+./scripts/setup_project.sh
+```
+This interactive script will:
+- Ask you questions about your book (title, author, publisher, etc.)
+- Create the `book_content/` folder structure
+- Generate `config.yaml` with your book settings
+- Create placeholder markdown files
+
+### Step 4: Add Your Content
+Edit the markdown files created in `book_content/`:
+- **Front matter**: `book_content/front_matter/` (title, copyright, dedication, preface)
+- **Chapters**: `book_content/chapters/` (your chapter files)
+- **Back matter**: `book_content/back_matter/` (acknowledgments, appendices)
+
+**Chapter naming**: Use `chapter_1.md`, `chapter_2.md`, etc. (or `ch1.md`, `01.md` - flexible naming supported)
+
+### Step 5: Generate Your Book
+```bash
+./scripts/generate_all.sh
+```
+
+This generates:
+- **EPUB**: `output/[book_title]_Professional.epub` (for Kindle, Apple Books, etc.)
+- **PDF**: `output/[book_title]_Print_Professional.pdf` (for KDP Print, IngramSpark)
+- **Word**: `output/[book_title]_Print_Professional.docx` (for further editing)
+
+### Step 6: Review and Publish
+- Check files in `output/` folder
+- Test EPUB in Kindle Previewer or Apple Books
+- Review PDF formatting
+- Upload to your publishing platform (Amazon KDP, Apple Books, etc.)
 
 ## 📋 Installation Requirements
 
@@ -217,25 +247,55 @@ book_content/
 - PDF: `output/[book_title]_Print_Professional.pdf`
 - Word: `output/[book_title]_Print_Professional.docx`
 
-### Common Workflow Patterns
+### Complete Workflow: From Clone to Published Book
 
-**First Time Setup:**
-1. Clone repo
-2. Run `./scripts/setup_project.sh`
-3. Add content to `book_content/`
-4. Run `./scripts/generate_all.sh`
+**1. Initial Setup (One Time Per Book)**
+```bash
+# Clone the template
+git clone https://github.com/jpaine/book_56Press.git my-book-name
+cd my-book-name
 
-**After Content Changes:**
-1. Edit markdown files in `book_content/`
-2. Run `./scripts/generate_all.sh`
-3. Check output in `output/`
+# Install dependencies
+pip install -r requirements.txt
 
-**Before Publishing:**
-1. Run `./scripts/validate.sh`
-2. Review all output files
-3. Test EPUB in Kindle Previewer
-4. Review PDF for formatting
-5. Upload to publishing platform
+# Run setup (creates folder structure and config)
+./scripts/setup_project.sh
+```
+
+**2. Write Your Book**
+- Edit markdown files in `book_content/`
+- Add chapters: `book_content/chapters/chapter_1.md`, `chapter_2.md`, etc.
+- Write front matter: title, copyright, preface
+- Write back matter: acknowledgments, appendices
+
+**3. Generate Formats (Repeat as Needed)**
+```bash
+# Generate all formats
+./scripts/generate_all.sh
+
+# Or generate individually
+./scripts/generate_epub.sh   # EPUB only
+./scripts/generate_pdf.sh    # PDF only
+./scripts/generate_word.sh  # Word only
+```
+
+**4. Validate Before Publishing**
+```bash
+# Run all validation checks
+./scripts/validate.sh
+
+# Check specific things
+./checks/check_dependencies.sh  # Verify tools installed
+./checks/check_structure.sh     # Verify folder structure
+./checks/check_content.sh       # Verify content files
+./checks/check_outputs.sh       # Verify generated files
+```
+
+**5. Publish**
+- Review files in `output/` folder
+- Test EPUB in Kindle Previewer or Apple Books
+- Review PDF formatting
+- Upload to Amazon KDP, Apple Books, or other platforms
 
 ## 🎨 Customization
 
