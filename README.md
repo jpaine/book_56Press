@@ -84,7 +84,7 @@ It DOES:
 
 ### Step 1: Clone This Repository
 ```bash
-git clone https://github.com/jpaine/book_56Press.git my-book-project
+git clone https://github.com/jpaine/book_generation.git my-book-project
 cd my-book-project
 ```
 
